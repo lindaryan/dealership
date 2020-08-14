@@ -9,7 +9,7 @@ namespace LindaRyanFinalProject.Models
     {
         public VehicleType()
         {
-            Model = new HashSet<Model>();
+            VehicleModel = new HashSet<VehicleModel>();
         }
 
         public int VehicleTypeId { get; set; }
@@ -18,6 +18,6 @@ namespace LindaRyanFinalProject.Models
         public string Name { get; set; }
 
         [InverseProperty("VehicleType")]
-        public virtual ICollection<Model> Model { get; set; }
+        public virtual ICollection<VehicleModel> VehicleModel { get; set; }
     }
 }

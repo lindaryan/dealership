@@ -16,15 +16,15 @@ namespace LindaRyanFinalProject.Models
         }
 
         public virtual DbSet<Make> Make { get; set; }
-        public virtual DbSet<Model> Model { get; set; }
         public virtual DbSet<Vehicle> Vehicle { get; set; }
+        public virtual DbSet<VehicleModel> VehicleModel { get; set; }
         public virtual DbSet<VehicleType> VehicleType { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=lindaryan.database.windows.net;Initial Catalog= dealership;Persist Security Info=False;User ID=comp2084;Password=Georgian2019;");
             }
         }
@@ -36,19 +36,6 @@ namespace LindaRyanFinalProject.Models
             modelBuilder.Entity<Make>(entity =>
             {
                 entity.Property(e => e.Name).IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Model>(entity =>
-            {
-                entity.Property(e => e.Colour).IsUnicode(false);
-
-                entity.Property(e => e.EngineSize).IsUnicode(false);
-
-                entity.HasOne(d => d.VehicleType)
-                    .WithMany(p => p.Model)
-                    .HasForeignKey(d => d.VehicleTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Model_VehicleTypeId");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>
@@ -68,6 +55,22 @@ namespace LindaRyanFinalProject.Models
                     .HasForeignKey(d => d.ModelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Vehicle_ModelId");
+            });
+
+            modelBuilder.Entity<VehicleModel>(entity =>
+            {
+                entity.HasKey(e => e.ModelId)
+                    .HasName("PK_Model");
+
+                entity.Property(e => e.Colour).IsUnicode(false);
+
+                entity.Property(e => e.EngineSize).IsUnicode(false);
+
+                entity.HasOne(d => d.VehicleType)
+                    .WithMany(p => p.VehicleModel)
+                    .HasForeignKey(d => d.VehicleTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Model_VehicleTypeId");
             });
 
             modelBuilder.Entity<VehicleType>(entity =>

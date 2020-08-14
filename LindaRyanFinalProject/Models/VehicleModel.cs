@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LindaRyanFinalProject.Models
 {
-    public partial class Model
+    public partial class VehicleModel
     {
-        public Model()
+        public VehicleModel()
         {
             Vehicle = new HashSet<Vehicle>();
         }
@@ -23,7 +23,7 @@ namespace LindaRyanFinalProject.Models
         public int VehicleTypeId { get; set; }
 
         [ForeignKey("VehicleTypeId")]
-        [InverseProperty("Model")]
+        [InverseProperty("VehicleModel")]
         public virtual VehicleType VehicleType { get; set; }
         [InverseProperty("Model")]
         public virtual ICollection<Vehicle> Vehicle { get; set; }

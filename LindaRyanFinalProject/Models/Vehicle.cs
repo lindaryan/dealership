@@ -30,6 +30,6 @@ namespace LindaRyanFinalProject.Models
         public virtual Make Make { get; set; }
         [ForeignKey("ModelId")]
         [InverseProperty("Vehicle")]
-        public virtual Model Model { get; set; }
+        public virtual VehicleModel Model { get; set; }
     }
 }
