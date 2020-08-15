@@ -10,8 +10,8 @@ namespace LindaRyanFinalProject.Models
         public int VehicleId { get; set; }
         public int MakeId { get; set; }
         public int ModelId { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime Year { get; set; }
+        [Range(1900, 2021, ErrorMessage = "Year must be between 1900 and 2021")]
+        public int Year { get; set; }
         [Required]
         [StringLength(100)]
         public string Colour { get; set; }
