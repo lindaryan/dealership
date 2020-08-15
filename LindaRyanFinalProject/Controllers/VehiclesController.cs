@@ -49,8 +49,8 @@ namespace LindaRyanFinalProject.Controllers
         // GET: Vehicles/Create
         public IActionResult Create()
         {
-            ViewData["MakeId"] = new SelectList(_context.VehicleMake, "MakeId", "Name");
-            ViewData["ModelId"] = new SelectList(_context.VehicleModel, "ModelId", "Name");
+            ViewData["MakeId"] = new SelectList(_context.VehicleMake.OrderBy(p => p.Name), "MakeId", "Name");
+            ViewData["ModelId"] = new SelectList(_context.VehicleModel.OrderBy(p => p.Name), "ModelId", "Name");
             return View();
         }
 
