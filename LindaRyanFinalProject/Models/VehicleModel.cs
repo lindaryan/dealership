@@ -28,6 +28,7 @@ namespace LindaRyanFinalProject.Models
 
         [ForeignKey("VehicleTypeId")]
         [InverseProperty("VehicleModel")]
+        [System.ComponentModel.DisplayName("Vehicle Type")]
         public virtual VehicleType VehicleType { get; set; }
         [InverseProperty("Model")]
         public virtual ICollection<Vehicle> Vehicle { get; set; }

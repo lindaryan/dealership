@@ -12,6 +12,7 @@ namespace LindaRyanFinalProject.Models
             VehicleModel = new HashSet<VehicleModel>();
         }
 
+        [System.ComponentModel.DisplayName("Type")]
         public int VehicleTypeId { get; set; }
         [Required]
         [StringLength(100)]
