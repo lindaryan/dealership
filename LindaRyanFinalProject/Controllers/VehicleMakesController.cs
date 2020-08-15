@@ -9,23 +9,22 @@ using LindaRyanFinalProject.Models;
 
 namespace LindaRyanFinalProject.Controllers
 {
-    public class VehiclesController : Controller
+    public class VehicleMakesController : Controller
     {
         private readonly dealershipContext _context;
 
-        public VehiclesController(dealershipContext context)
+        public VehicleMakesController(dealershipContext context)
         {
             _context = context;
         }
 
-        // GET: Vehicles
+        // GET: VehicleMakes
         public async Task<IActionResult> Index()
         {
-            var dealershipContext = _context.Vehicle.Include(v => v.Make).Include(v => v.Model);
-            return View(await dealershipContext.ToListAsync());
+            return View(await _context.VehicleMake.ToListAsync());
         }
 
-        // GET: Vehicles/Details/5
+        // GET: VehicleMakes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +32,39 @@ namespace LindaRyanFinalProject.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle
-                .Include(v => v.Make)
-                .Include(v => v.Model)
-                .FirstOrDefaultAsync(m => m.VehicleId == id);
-            if (vehicle == null)
+            var vehicleMake = await _context.VehicleMake
+                .FirstOrDefaultAsync(m => m.MakeId == id);
+            if (vehicleMake == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(vehicleMake);
         }
 
-        // GET: Vehicles/Create
+        // GET: VehicleMakes/Create
         public IActionResult Create()
         {
-            ViewData["MakeId"] = new SelectList(_context.VehicleMake, "MakeId", "Name");
-            ViewData["ModelId"] = new SelectList(_context.VehicleModel, "ModelId", "Name");
             return View();
         }
 
-        // POST: Vehicles/Create
+        // POST: VehicleMakes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VehicleId,MakeId,ModelId,Year,Colour,Price,Cost,Location,SoldStatus,SoldDate")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("MakeId,Name")] VehicleMake vehicleMake)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
+                _context.Add(vehicleMake);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MakeId"] = new SelectList(_context.VehicleMake, "MakeId", "Name", vehicle.MakeId);
-            ViewData["ModelId"] = new SelectList(_context.VehicleModel, "ModelId", "Name", vehicle.ModelId);
-            return View(vehicle);
+            return View(vehicleMake);
         }
 
-        // GET: Vehicles/Edit/5
+        // GET: VehicleMakes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +72,22 @@ namespace LindaRyanFinalProject.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle.FindAsync(id);
-            if (vehicle == null)
+            var vehicleMake = await _context.VehicleMake.FindAsync(id);
+            if (vehicleMake == null)
             {
                 return NotFound();
             }
-            ViewData["MakeId"] = new SelectList(_context.VehicleMake, "MakeId", "Name", vehicle.MakeId);
-            ViewData["ModelId"] = new SelectList(_context.VehicleModel, "ModelId", "Name", vehicle.ModelId);
-            return View(vehicle);
+            return View(vehicleMake);
         }
 
-        // POST: Vehicles/Edit/5
+        // POST: VehicleMakes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VehicleId,MakeId,ModelId,Year,Colour,Price,Cost,Location,SoldStatus,SoldDate")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("MakeId,Name")] VehicleMake vehicleMake)
         {
-            if (id != vehicle.VehicleId)
+            if (id != vehicleMake.MakeId)
             {
                 return NotFound();
             }
@@ -105,12 +96,12 @@ namespace LindaRyanFinalProject.Controllers
             {
                 try
                 {
-                    _context.Update(vehicle);
+                    _context.Update(vehicleMake);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.VehicleId))
+                    if (!VehicleMakeExists(vehicleMake.MakeId))
                     {
                         return NotFound();
                     }
@@ -121,12 +112,10 @@ namespace LindaRyanFinalProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MakeId"] = new SelectList(_context.VehicleMake, "MakeId", "Name", vehicle.MakeId);
-            ViewData["ModelId"] = new SelectList(_context.VehicleModel, "ModelId", "Name", vehicle.ModelId);
-            return View(vehicle);
+            return View(vehicleMake);
         }
 
-        // GET: Vehicles/Delete/5
+        // GET: VehicleMakes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +123,30 @@ namespace LindaRyanFinalProject.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle
-                .Include(v => v.Make)
-                .Include(v => v.Model)
-                .FirstOrDefaultAsync(m => m.VehicleId == id);
-            if (vehicle == null)
+            var vehicleMake = await _context.VehicleMake
+                .FirstOrDefaultAsync(m => m.MakeId == id);
+            if (vehicleMake == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(vehicleMake);
         }
 
-        // POST: Vehicles/Delete/5
+        // POST: VehicleMakes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicle = await _context.Vehicle.FindAsync(id);
-            _context.Vehicle.Remove(vehicle);
+            var vehicleMake = await _context.VehicleMake.FindAsync(id);
+            _context.VehicleMake.Remove(vehicleMake);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
+        private bool VehicleMakeExists(int id)
         {
-            return _context.Vehicle.Any(e => e.VehicleId == id);
+            return _context.VehicleMake.Any(e => e.MakeId == id);
         }
     }
 }

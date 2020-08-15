@@ -1,0 +1,45 @@
+﻿@model LindaRyanFinalProject.Models.VehicleModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add</h1>
+
+<h4>Vehicle Model</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EngineSize" class="control-label">Engine Size</label>
+                <input asp-for="EngineSize" class="form-control" />
+                <span asp-validation-for="EngineSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfDoors" class="control-label">Number of Doors</label>
+                <input asp-for="NumberOfDoors" class="form-control" />
+                <span asp-validation-for="NumberOfDoors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleTypeId" class="control-label">Vehicle Type</label>
+                <select asp-for="VehicleTypeId" class ="form-control" asp-items="ViewBag.VehicleTypeId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Model" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List of Models</a>
+</div>
+

@@ -12,22 +12,29 @@ namespace LindaRyanFinalProject.Models
         public int ModelId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime Year { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Colour { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal Price { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal Cost { get; set; }
         [Required]
         [StringLength(100)]
         public string Location { get; set; }
         [Required]
         [StringLength(20)]
+        [System.ComponentModel.DisplayName("Status")]
         public string SoldStatus { get; set; }
         [Column(TypeName = "datetime")]
+        [System.ComponentModel.DisplayName("Date Sold")]
         public DateTime? SoldDate { get; set; }
 
         [ForeignKey("MakeId")]
         [InverseProperty("Vehicle")]
-        public virtual Make Make { get; set; }
+        public virtual VehicleMake Make { get; set; }
         [ForeignKey("ModelId")]
         [InverseProperty("Vehicle")]
         public virtual VehicleModel Model { get; set; }

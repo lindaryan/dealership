@@ -5,16 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LindaRyanFinalProject.Models
 {
-    public partial class Make
+    public partial class VehicleMake
     {
-        public Make()
+        public VehicleMake()
         {
             Vehicle = new HashSet<Vehicle>();
         }
 
+        [Key]
         public int MakeId { get; set; }
         [Required]
         [StringLength(100)]
+        [System.ComponentModel.DisplayName("Make")]
         public string Name { get; set; }
 
         [InverseProperty("Make")]

@@ -15,6 +15,7 @@ namespace LindaRyanFinalProject.Models
         public int VehicleTypeId { get; set; }
         [Required]
         [StringLength(100)]
+        [System.ComponentModel.DisplayName("Type")]
         public string Name { get; set; }
 
         [InverseProperty("VehicleType")]

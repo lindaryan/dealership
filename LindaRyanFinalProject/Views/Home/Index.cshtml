@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Linda Ryan | 020080205";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">WELCOME</h1>
+    <h4>Choose a category to start managing your inventory:</h4>
+    <br />
+    <p>
+        <a class="nav-link text-dark" asp-area="" asp-controller="VehicleMakes" asp-action="Index">All Vehicle Makes</a>
+    </p>
+    <p>
+        <a class="nav-link text-dark" asp-area="" asp-controller="VehicleModels" asp-action="Index">All Vehicle Models</a>
+    </p>
+    <p>
+        <a class="nav-link text-dark" asp-area="" asp-controller="VehicleTypes" asp-action="Index">All Vehicle Types</a>
+    </p>
+    <p>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index">Full Vehicle Inventory</a>
+    </p>
 </div>

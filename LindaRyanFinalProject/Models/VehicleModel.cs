@@ -12,14 +12,18 @@ namespace LindaRyanFinalProject.Models
             Vehicle = new HashSet<Vehicle>();
         }
 
+        [Key]
         public int ModelId { get; set; }
         [Required]
         [StringLength(100)]
-        public string EngineSize { get; set; }
-        public int NumberOfDoors { get; set; }
+        [System.ComponentModel.DisplayName("Model")]
+        public string Name { get; set; }
         [Required]
         [StringLength(100)]
-        public string Colour { get; set; }
+        [System.ComponentModel.DisplayName("Engine Size")]
+        public string EngineSize { get; set; }
+        [System.ComponentModel.DisplayName("Number of Doors")]
+        public int NumberOfDoors { get; set; }
         public int VehicleTypeId { get; set; }
 
         [ForeignKey("VehicleTypeId")]
