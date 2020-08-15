@@ -47,14 +47,14 @@
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoldStatus" class="control-label"></label>
-                <input asp-for="SoldStatus" class="form-control" />
-                <span asp-validation-for="SoldStatus" class="text-danger"></span>
+                <label asp-for="SoldDate" class="control-label"></label>
+                <input asp-for="SoldDate" class="form-control" id="DatePicked" onchange="AssignSold()" />
+                <span asp-validation-for="SoldDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoldDate" class="control-label"></label>
-                <input asp-for="SoldDate" class="form-control" />
-                <span asp-validation-for="SoldDate" class="text-danger"></span>
+                <label asp-for="SoldStatus" class="control-label"></label>
+                <input asp-for="SoldStatus" class="form-control" id="SoldStatus" readonly />
+                <span asp-validation-for="SoldStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Add Vehicle" class="btn btn-primary" />
@@ -67,3 +67,12 @@
     <a asp-action="Index">Back to Inventory List</a>
 </div>
 
+    @*test if date value has been selected, if so assign Sold as value of SoldStatus field*@ 
+    <script>
+        function AssignSold() {
+            var datePicked = $("#DatePicked").val();
+            if (datePicked) {
+                $("#SoldStatus").val("Sold");
+            }
+        }
+    </script>

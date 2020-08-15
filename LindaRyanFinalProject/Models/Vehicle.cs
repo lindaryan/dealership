@@ -26,7 +26,6 @@ namespace LindaRyanFinalProject.Models
         [Required]
         [StringLength(100)]
         public string Location { get; set; }
-        [Required]
         [StringLength(20)]
         // change display name for headings
         [System.ComponentModel.DisplayName("Status")]
