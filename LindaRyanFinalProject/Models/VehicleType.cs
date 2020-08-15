@@ -12,10 +12,12 @@ namespace LindaRyanFinalProject.Models
             VehicleModel = new HashSet<VehicleModel>();
         }
 
+        // change display name for headings
         [System.ComponentModel.DisplayName("Type")]
         public int VehicleTypeId { get; set; }
         [Required]
         [StringLength(100)]
+        // change display name for headings
         [System.ComponentModel.DisplayName("Type")]
         public string Name { get; set; }
 

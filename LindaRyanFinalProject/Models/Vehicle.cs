@@ -16,9 +16,11 @@ namespace LindaRyanFinalProject.Models
         [StringLength(100)]
         public string Colour { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
+        // display as currency
         [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal Price { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
+        // display as currency
         [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal Cost { get; set; }
         [Required]
@@ -26,9 +28,11 @@ namespace LindaRyanFinalProject.Models
         public string Location { get; set; }
         [Required]
         [StringLength(20)]
+        // change display name for headings
         [System.ComponentModel.DisplayName("Status")]
         public string SoldStatus { get; set; }
         [Column(TypeName = "datetime")]
+        // change display name for headings
         [System.ComponentModel.DisplayName("Date Sold")]
         public DateTime? SoldDate { get; set; }
 

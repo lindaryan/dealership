@@ -35,7 +35,7 @@ namespace LindaRyanFinalProject
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            // update db context
             services.AddDbContext<dealershipContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

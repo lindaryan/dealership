@@ -16,12 +16,15 @@ namespace LindaRyanFinalProject.Models
         public int ModelId { get; set; }
         [Required]
         [StringLength(100)]
+        // change display name for headings
         [System.ComponentModel.DisplayName("Model")]
         public string Name { get; set; }
         [Required]
         [StringLength(100)]
+        // change display name for headings
         [System.ComponentModel.DisplayName("Engine Size")]
         public string EngineSize { get; set; }
+        // change display name for headings
         [System.ComponentModel.DisplayName("Number of Doors")]
         public int NumberOfDoors { get; set; }
         public int VehicleTypeId { get; set; }
