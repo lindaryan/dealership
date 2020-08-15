@@ -21,7 +21,8 @@ namespace LindaRyanFinalProject.Controllers
         // GET: VehicleModels
         public async Task<IActionResult> Index()
         {
-            var dealershipContext = _context.VehicleModel.Include(v => v.VehicleType);
+            // sort lists alphabetically
+            var dealershipContext = _context.VehicleModel.OrderBy(p => p.Name).Include(v => v.VehicleType);
             return View(await dealershipContext.ToListAsync());
         }
 

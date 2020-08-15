@@ -21,7 +21,8 @@ namespace LindaRyanFinalProject.Controllers
         // GET: VehicleTypes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VehicleType.ToListAsync());
+            // sort lists alphabetically
+            return View(await _context.VehicleType.OrderBy(p => p.Name).ToListAsync());
         }
 
         // GET: VehicleTypes/Details/5

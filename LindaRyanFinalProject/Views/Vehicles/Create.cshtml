@@ -6,8 +6,7 @@
 }
 
 <h1>Add a Vehicle</h1>
-
-<h4></h4>
+<p>Don't see your Model listed? Add it <a asp-controller="VehicleModels" asp-action="Create">HERE</a> first.</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,11 +15,11 @@
             <div class="form-group">
                 @*Vehicle Make and Model must be selected from dropdown list of previously added items*@
                 <label asp-for="MakeId" class="control-label">Make</label>
-                <select asp-for="MakeId" class ="form-control" asp-items="ViewBag.MakeId"></select>
+                <select asp-for="MakeId" class="form-control" asp-items="ViewBag.MakeId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ModelId" class="control-label">Model</label>
-                <select asp-for="ModelId" class ="form-control" asp-items="ViewBag.ModelId"></select>
+                <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Year" class="control-label">Date of Manufacture</label>

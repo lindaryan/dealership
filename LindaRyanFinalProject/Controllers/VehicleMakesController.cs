@@ -21,7 +21,8 @@ namespace LindaRyanFinalProject.Controllers
         // GET: VehicleMakes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VehicleMake.ToListAsync());
+            // sort lists alphabetically
+            return View(await _context.VehicleMake.OrderBy(p => p.Name).ToListAsync());
         }
 
         // GET: VehicleMakes/Details/5

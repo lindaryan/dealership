@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Add a Vehicle</a>
 </p>
-<table class="table">
+<table class="table sortable table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -71,11 +71,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SoldStatus)
-                @*if(!item.SoldDate) {
-                    "Available"
-                } else {
-                    "Sold"
-                }*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SoldDate)
